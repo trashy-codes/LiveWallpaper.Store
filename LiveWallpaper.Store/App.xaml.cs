@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EasyMvvm;
+using LiveWallpaper.Store.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,9 @@ namespace LiveWallpaper.Store
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            IoC.Singleton<WallpapersViewModel>().PerRequest<WallpapersViewModel>();
+        }
     }
 }

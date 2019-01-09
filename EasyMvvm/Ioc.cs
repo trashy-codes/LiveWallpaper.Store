@@ -4,7 +4,16 @@ using System.Text;
 
 namespace EasyMvvm
 {
-    public static class IoC
+    public class IoC
     {
+        public static IoC Singleton<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IoC PerRequest<T>()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
