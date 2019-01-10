@@ -3,10 +3,26 @@ using Xunit;
 
 namespace EasyMvvm.Test
 {
+    class TestObjA
+    {
+        public string Data { get; set; } = "A";
+    }
+
+    class TestObjB
+    {
+        public TestObjB(TestObjA a)
+        {
+            A = a;
+        }
+
+        public TestObjA A { get; set; }
+    }
+
     public class IocContainerTest
     {
+
         [Fact]
-        public void Test1()
+        public void Singleton()
         {
             IocContainer container = new IocContainer();
             container.Singleton<object>();
@@ -15,6 +31,21 @@ namespace EasyMvvm.Test
             var instanceB = container.Get<object>();
 
             Assert.Same(instanceA, instanceB);
+        }
+
+
+        [Fact]
+        public void Singleton2()
+        {
+            IocContainer container = new IocContainer();
+            container.Singleton<TestObjA>();
+            container.Singleton<TestObjB>();
+
+            var instanceA = container.Get<TestObjB>();
+            var instanceB = container.Get<TestObjB>();
+
+            Assert.Same(instanceA, instanceB);
+            Assert.Same(instanceA.A.Data, "A");
         }
     }
 }
