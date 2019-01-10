@@ -4,8 +4,17 @@ using System.Text;
 
 namespace EasyMvvm
 {
+    public class IocCacheData
+    {
+        public string Key { get; set; }
+        public Type TargetType { get; set; }
+        public object Instance { get; set; }
+    }
+
     public class IocContainer
     {
+        private Dictionary<string, IocCacheData> _cache = new Dictionary<string, IocCacheData>();
+
         public IocContainer Singleton<T>(string key = null)
         {
             return this;
