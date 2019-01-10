@@ -58,5 +58,32 @@ namespace LiveWallpaper.Store.ViewModels
         }
 
         #endregion
+
+        #region SelectMenuCommand
+
+        private DelegateCommand<MenuObj> _SelectMenuCommand;
+
+        /// <summary>
+        /// Gets the SelectMenuCommand.
+        /// </summary>
+        public DelegateCommand<MenuObj> SelectMenuCommand
+        {
+            get
+            {
+                return _SelectMenuCommand ?? (_SelectMenuCommand = new DelegateCommand<MenuObj>(ExecuteSelectMenuCommand, CanExecuteSelectMenuCommand));
+            }
+        }
+
+        private void ExecuteSelectMenuCommand(MenuObj parameter)
+        {
+
+        }
+
+        private bool CanExecuteSelectMenuCommand(MenuObj parameter)
+        {
+            return true;
+        }
+
+        #endregion
     }
 }
