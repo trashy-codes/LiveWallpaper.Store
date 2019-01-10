@@ -15,5 +15,10 @@ namespace EasyMvvm
         {
             return this;
         }
+
+        public T Get<T>(string key = null)
+        {
+            return default(T);
+        }
     }
 }
