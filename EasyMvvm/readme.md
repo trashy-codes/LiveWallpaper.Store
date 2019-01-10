@@ -12,3 +12,5 @@
 自主映射view和viewmodel
 可以通过view自动生成并关联viewmodel
 可以通过viewModel生成并关联view
+
+太多的功能意味着选择困难，只提供一种能完成要求的方法
