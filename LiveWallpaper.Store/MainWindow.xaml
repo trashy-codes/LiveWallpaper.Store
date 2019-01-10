@@ -3,9 +3,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:easyXAml="clr-namespace:EasyMvvm.Xaml;assembly=EasyMvvm"
     xmlns:local="clr-namespace:LiveWallpaper.Store"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:easyXAml="clr-namespace:EasyMvvm.Xaml;assembly=EasyMvvm"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
     Width="800"
@@ -23,8 +23,10 @@
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                     <ListBox
                         x:Name="DemoItemsListBox"
-                        easyXAml:EasyBind.Model="AppMenuViewModel"
                         Margin="0,16,0,16"
+                        easyXAml:EasyBind.Model="AppMenuViewModel"
+                        DisplayMemberPath="Name"
+                        ItemsSource="{Binding Menus}"
                         SelectedIndex="0" />
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>

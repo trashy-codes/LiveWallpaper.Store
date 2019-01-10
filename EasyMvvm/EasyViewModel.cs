@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasyMvvm
 {
-    public class EasyViewModel
+    public class EasyViewModel : EasyObservableObject
     {
     }
 }

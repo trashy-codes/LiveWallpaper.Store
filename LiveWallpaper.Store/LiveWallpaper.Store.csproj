@@ -65,6 +65,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\WallpapersViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
