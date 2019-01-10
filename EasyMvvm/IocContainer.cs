@@ -16,9 +16,17 @@ namespace EasyMvvm
             return this;
         }
 
-        public T Get<T>(string key = null)
+        public T Get<T>(string key = null) where T : object
         {
-            return default(T);
+            if (string.IsNullOrEmpty(key))
+                key = nameof(T);
+            var result = (T)Get(key);
+            return result;
+        }
+
+        public object Get(string key)
+        {
+            return null;
         }
     }
 }
