@@ -7,3 +7,8 @@
 - [ ] 易用
 	保持xaml简洁
 - [ ] 只处理mvvm
+
+
+自主映射view和viewmodel
+可以通过view自动生成并关联viewmodel
+可以通过viewModel生成并关联view

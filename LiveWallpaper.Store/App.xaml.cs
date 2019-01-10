@@ -18,7 +18,9 @@ namespace LiveWallpaper.Store
         public App()
         {
             IocContainer container = new IocContainer();
-            container.Singleton<WallpapersViewModel>();
+            container
+                .Singleton<WallpapersViewModel>()
+                .Singleton<AppMenuViewModel>();
         }
     }
 }
