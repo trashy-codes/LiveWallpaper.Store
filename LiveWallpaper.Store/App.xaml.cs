@@ -19,8 +19,8 @@ namespace LiveWallpaper.Store
         {
             IocContainer container = new IocContainer();
             container
-                .Singleton<WallpapersViewModel>()
-                .Singleton<AppMenuViewModel>();
+                .SingletonDefault<WallpapersViewModel>()
+                .SingletonDefault<AppMenuViewModel>();
 
             EasyManager.Initialize(container);
         }

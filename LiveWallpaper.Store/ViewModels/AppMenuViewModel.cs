@@ -8,5 +8,9 @@ namespace LiveWallpaper.Store.ViewModels
 {
     public class AppMenuViewModel
     {
+        public AppMenuViewModel()
+        {
+
+        }
     }
 }

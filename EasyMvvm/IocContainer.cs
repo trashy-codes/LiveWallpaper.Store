@@ -23,6 +23,16 @@ namespace EasyMvvm
         private Guid _id = Guid.NewGuid();
         private Dictionary<string, IocCacheData> _cache = new Dictionary<string, IocCacheData>();
 
+        /// <summary>
+        /// 自动生成类型名称作为key
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public IocContainer SingletonDefault<T>()
+        {
+            return Singleton<T>(typeof(T).Name);
+        }
+
         public IocContainer Singleton<T>(string key = null)
         {
             Type targetType = typeof(T);
