@@ -35,22 +35,17 @@ namespace EasyMvvm
 
         public IocContainer Singleton<T>(string key = null)
         {
-            Type targetType = typeof(T);
-
-            if (string.IsNullOrEmpty(key))
-            {
-                key = GetDefaultName(targetType);
-            }
-            _cache[key] = new IocCacheData(true)
-            {
-                TargetType = targetType,
-                Key = key
-            };
+            Register<T>(key, true);
             return this;
         }
 
+        public IocContainer PerRequestDefault<T>()
+        {
+            return PerRequest<T>(typeof(T).Name);
+        }
         public IocContainer PerRequest<T>(string key = null)
         {
+            Register<T>(key, false);
             return this;
         }
 
@@ -101,6 +96,21 @@ namespace EasyMvvm
             //加guid是为了防止，设置同名key覆盖掉默认的对象
             string name = type.Name + _id.ToString();
             return name;
+        }
+
+        private void Register<T>(string key, bool singleton)
+        {
+            Type targetType = typeof(T);
+
+            if (string.IsNullOrEmpty(key))
+            {
+                key = GetDefaultName(targetType);
+            }
+            _cache[key] = new IocCacheData(singleton)
+            {
+                TargetType = targetType,
+                Key = key
+            };
         }
 
         #endregion
