@@ -21,6 +21,8 @@ namespace LiveWallpaper.Store
             container
                 .Singleton<WallpapersViewModel>()
                 .Singleton<AppMenuViewModel>();
+
+            EasyManager.Initialize(container);
         }
     }
 }
