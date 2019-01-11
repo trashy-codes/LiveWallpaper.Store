@@ -24,7 +24,7 @@ namespace LiveWallpaper.Store
                 .SingletonDefault<SettingViewModel>()
                 .SingletonDefault<AppMenuViewModel>();
 
-            EasyManager.Initialize(container);
+            EasyManager.Initialize(container, new StoreNavigator());
             EasyManager.Associate<WallpapersView, WallpapersViewModel>();
             EasyManager.Associate<SettingView, SettingViewModel>();
         }

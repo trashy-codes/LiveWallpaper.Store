@@ -76,7 +76,7 @@
                     </Grid.RowDefinitions>
                     <Button>Header</Button>
                     <ScrollViewer Grid.Row="1">
-                        <ContentControl />
+                        <ContentControl x:Name="Content" />
                     </ScrollViewer>
 
                     <materialDesign:Snackbar
