@@ -16,9 +16,9 @@ using System.Windows.Shapes;
 namespace LiveWallpaper.Store.Views
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// WallpapersView.xaml 的交互逻辑
     /// </summary>
-    public partial class WallpapersView : Window
+    public partial class WallpapersView : UserControl
     {
         public WallpapersView()
         {

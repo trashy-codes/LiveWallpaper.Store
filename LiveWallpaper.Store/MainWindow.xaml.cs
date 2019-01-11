@@ -21,10 +21,18 @@ namespace LiveWallpaper.Store
     public partial class MainWindow : Window
     {
         public static MainWindow Instance { get; private set; }
+        private object lastContent;
         public MainWindow()
         {
-            InitializeComponent();
             Instance = this;
+            InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= MainWindow_Loaded;
+            Content.Content = lastContent;
         }
 
         private void LstBoxMenu_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -41,7 +49,9 @@ namespace LiveWallpaper.Store
 
         internal void SetContent(UserControl control)
         {
-            Content.Content = control;
+            lastContent = control;
+            if (Content != null)
+                Content.Content = control;
         }
     }
 }

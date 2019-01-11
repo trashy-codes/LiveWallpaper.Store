@@ -29,6 +29,8 @@ namespace LiveWallpaper.Store.ViewModels
                     TargetType=typeof(SettingViewModel)
                 }
             };
+            var vm = EasyManager.IoC.GetDefault<WallpapersViewModel>();
+            EasyManager.Navigator.Show(vm);
         }
 
         #region Menus

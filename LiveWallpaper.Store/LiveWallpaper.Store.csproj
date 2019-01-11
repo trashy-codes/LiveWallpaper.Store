@@ -71,6 +71,9 @@
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\WallpapersViewModel.cs" />
+    <Compile Include="Views\WallpapersView.xaml.cs">
+      <DependentUpon>WallpapersView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -79,10 +82,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WallpapersView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -90,10 +89,10 @@
     <Compile Include="Views\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WallpapersView.xaml.cs">
-      <DependentUpon>WallpapersView.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Views\WallpapersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

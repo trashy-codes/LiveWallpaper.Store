@@ -49,6 +49,11 @@ namespace EasyMvvm
             return this;
         }
 
+        public object GetDefault<T>()
+        {
+            return Get(typeof(T).Name);
+        }
+
         public object GetDefault(Type type)
         {
             return Get(type.Name);
