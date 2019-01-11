@@ -6,27 +6,37 @@ namespace EasyMvvm
 {
     public static class EasyManager
     {
+        private static Dictionary<Type, Type> cacheAssociate = new Dictionary<Type, Type>();
+
         public static IocContainer IoC { get; private set; }
+        public static INavigator Navigator { get; private set; }
 
-        public static void Initialize(IocContainer container)
+        public static void Initialize(IocContainer container, INavigator navigator = null)
         {
+            if (navigator == null)
+                navigator = new Navigator();
+
             IoC = container;
+            Navigator = navigator;
         }
 
-        public static void Associate<View, VM>(View view, VM viewModel) where View : EasyView where VM : EasyViewModel
+        public static void Associate<View, VM>()
         {
-
+            cacheAssociate[typeof(VM)] = typeof(View);
         }
 
-        public static View GetView<View, VM>(VM vm) where View : EasyView where VM : EasyViewModel
+        public static object GetView(object vm)
         {
-            return new EasyView() as View;
+            var type = vm.GetType();
+            var viewType = cacheAssociate[type];
+            //view 构造函数不能有参数
+            var view = IocContainer.ActivateInstance(viewType, null);
+            return view;
         }
 
-        public static VM GetViewModel<View, VM>(View view) where View : EasyView where VM : EasyViewModel
-        {
-            return new EasyViewModel() as VM;
-        }
-
+        //public static object GetViewModel(EasyView view)
+        //{
+        //    return new EasyViewModel();
+        //}
     }
 }

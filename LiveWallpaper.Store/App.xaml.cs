@@ -1,5 +1,6 @@
 ﻿using EasyMvvm;
 using LiveWallpaper.Store.ViewModels;
+using LiveWallpaper.Store.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,9 +21,12 @@ namespace LiveWallpaper.Store
             IocContainer container = new IocContainer();
             container
                 .SingletonDefault<WallpapersViewModel>()
+                .SingletonDefault<SettingViewModel>()
                 .SingletonDefault<AppMenuViewModel>();
 
             EasyManager.Initialize(container);
+            EasyManager.Associate<WallpapersView, WallpapersViewModel>();
+            EasyManager.Associate<SettingView, SettingViewModel>();
         }
     }
 }

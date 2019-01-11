@@ -75,7 +75,8 @@ namespace LiveWallpaper.Store.ViewModels
 
         private void ExecuteSelectMenuCommand(MenuObj parameter)
         {
-
+            var vm = EasyManager.IoC.GetDefault(parameter.TargetType);
+            EasyManager.Navigator.Show(vm);
         }
 
         private bool CanExecuteSelectMenuCommand(MenuObj parameter)

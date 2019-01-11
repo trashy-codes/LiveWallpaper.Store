@@ -49,6 +49,11 @@ namespace EasyMvvm
             return this;
         }
 
+        public object GetDefault(Type type)
+        {
+            return Get(type.Name);
+        }
+
         public T Get<T>(string key = null) where T : object
         {
             T result = default(T);
@@ -85,6 +90,18 @@ namespace EasyMvvm
 
             data.Instance = result;
 
+            return result;
+        }
+
+        /// <summary>
+        /// 反射对象，并注入相关接口
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public object GenerateObj(Type type)
+        {
+            var args = GetConstructorArgs(type);
+            var result = ActivateInstance(type, args);
             return result;
         }
 
@@ -137,9 +154,9 @@ namespace EasyMvvm
                     select c).FirstOrDefault();
         }
 
-        private static object ActivateInstance(Type type, object[] args)
+        public static object ActivateInstance(Type type, object[] args)
         {
-            var instance = args.Length > 0 ? System.Activator.CreateInstance(type, args) : System.Activator.CreateInstance(type);
+            var instance = args != null && args.Length > 0 ? System.Activator.CreateInstance(type, args) : System.Activator.CreateInstance(type);
             return instance;
         }
 

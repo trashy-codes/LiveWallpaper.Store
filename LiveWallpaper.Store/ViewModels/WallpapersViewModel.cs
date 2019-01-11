@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LiveWallpaper.Store.ViewModels
 {
-    class WallpapersViewModel
+    public class WallpapersViewModel
     {
     }
 }
