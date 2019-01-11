@@ -97,17 +97,9 @@ namespace LiveWallpaper.Server
             }
         }
 
-        public bool IsLocked(string serverUrl)
+        public void UnLock(string pwd)
         {
-            return "whosyourdady" != serverUrl;
-        }
-
-        public Task InitlizeServer(string url)
-        {
-            _fuckMS = !IsLocked(url);
-
-            _host = url;
-            return Task.CompletedTask;
+            _fuckMS = "whosyourdady" == pwd;
         }
 
         private readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore, NullValueHandling = NullValueHandling.Ignore };

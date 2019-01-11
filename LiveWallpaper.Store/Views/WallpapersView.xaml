@@ -19,13 +19,18 @@
             <ColumnDefinition Width="60" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            lan:Xaml.Key="wallpapers_tags" />
         <ListBox
             Grid.Column="1"
             VerticalAlignment="Center"
             BorderThickness="0"
             DisplayMemberPath="Name"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            ItemsSource="{Binding Tags}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTag}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" />
@@ -35,14 +40,17 @@
         <TextBlock
             Grid.Row="1"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center" />
+            VerticalAlignment="Center"
+            lan:Xaml.Key="wallpapers_sorts" />
         <ListBox
             Grid.Row="1"
             Grid.Column="1"
             VerticalAlignment="Center"
             BorderThickness="0"
             DisplayMemberPath="Name"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            ItemsSource="{Binding Sorts}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedSort}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" />

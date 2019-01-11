@@ -73,7 +73,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <ScrollViewer Grid.Row="1">
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled">
                         <ContentControl x:Name="Content" />
                     </ScrollViewer>
 

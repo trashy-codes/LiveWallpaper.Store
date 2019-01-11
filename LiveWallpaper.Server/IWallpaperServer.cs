@@ -7,7 +7,7 @@ namespace LiveWallpaper.Server
 {
     public interface IWallpaperServer
     {
-        Task InitlizeServer(string url);
+        void UnLock(string pwd);
 
         Task<List<TagServerObj>> GetTags();
         Task<List<SortServerObj>> GetSorts();
