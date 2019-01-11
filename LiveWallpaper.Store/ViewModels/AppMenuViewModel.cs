@@ -31,7 +31,6 @@ namespace LiveWallpaper.Store.ViewModels
             };
         }
 
-
         #region Menus
 
         /// <summary>

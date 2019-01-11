@@ -27,6 +27,7 @@
                         Margin="0,16,0,16"
                         easyXAml:EasyBind.Model="AppMenuViewModel"
                         DisplayMemberPath="Name"
+                        PreviewMouseLeftButtonUp="LstBoxMenu_PreviewMouseLeftButtonUp"
                         ItemsSource="{Binding Menus}"
                         SelectedIndex="0">
                         <Behaviors:Interaction.Triggers>
