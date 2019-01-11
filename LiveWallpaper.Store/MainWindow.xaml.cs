@@ -20,9 +20,11 @@ namespace LiveWallpaper.Store
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow Instance { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void LstBoxMenu_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -35,6 +37,11 @@ namespace LiveWallpaper.Store
             }
 
             MenuToggleButton.IsChecked = false;
+        }
+
+        internal void SetContent(UserControl control)
+        {
+            Content.Content = control;
         }
     }
 }
