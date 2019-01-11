@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>LiveWallpaper.Store</RootNamespace>
     <AssemblyName>LiveWallpaper.Store</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -135,6 +136,10 @@
     <ProjectReference Include="..\EasyMvvm\EasyMvvm.csproj">
       <Project>{dafa1c0b-e525-4534-8157-d4360add938c}</Project>
       <Name>EasyMvvm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LiveWallpaper.Server\LiveWallpaper.Server.csproj">
+      <Project>{92754a68-455c-404e-a1f5-527ec6e38f8a}</Project>
+      <Name>LiveWallpaper.Server</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
