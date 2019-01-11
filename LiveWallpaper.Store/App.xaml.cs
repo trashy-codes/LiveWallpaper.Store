@@ -1,4 +1,5 @@
 ﻿using EasyMvvm;
+using LiveWallpaper.Server;
 using LiveWallpaper.Store.ViewModels;
 using LiveWallpaper.Store.Views;
 using MultiLanguageManager;
@@ -29,9 +30,10 @@ namespace LiveWallpaper.Store
             //mvvm初始化
             IocContainer container = new IocContainer();
             container
-                .SingletonDefault<WallpapersViewModel>()
-                .SingletonDefault<SettingViewModel>()
-                .SingletonDefault<AppMenuViewModel>();
+                .Singleton<LocalServer>()
+                .Singleton<WallpapersViewModel>()
+                .Singleton<SettingViewModel>()
+                .Singleton<AppMenuViewModel>();
 
             EasyManager.Initialize(container, new StoreNavigator());
             EasyManager.Associate<WallpapersView, WallpapersViewModel>();

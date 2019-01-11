@@ -29,7 +29,7 @@ namespace LiveWallpaper.Store.ViewModels
                     TargetType=typeof(SettingViewModel)
                 }
             };
-            var vm = EasyManager.IoC.GetDefault<WallpapersViewModel>();
+            var vm = EasyManager.IoC.Get<WallpapersViewModel>();
             EasyManager.Navigator.Show(vm);
         }
 
@@ -77,7 +77,7 @@ namespace LiveWallpaper.Store.ViewModels
 
         private void ExecuteSelectMenuCommand(MenuObj parameter)
         {
-            var vm = EasyManager.IoC.GetDefault(parameter.TargetType);
+            var vm = EasyManager.IoC.Get(parameter.TargetType);
             EasyManager.Navigator.Show(vm);
         }
 

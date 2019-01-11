@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace EasyMvvm
 {
@@ -30,7 +31,9 @@ namespace EasyMvvm
             var type = vm.GetType();
             var viewType = cacheAssociate[type];
             //view 构造函数不能有参数
-            var view = IocContainer.ActivateInstance(viewType, null);
+            var viewObj = IocContainer.ActivateInstance(viewType, null);
+            var view = viewObj as FrameworkElement;
+            view.DataContext = vm;
             return view;
         }
 

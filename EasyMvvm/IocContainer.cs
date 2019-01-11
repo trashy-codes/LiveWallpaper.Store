@@ -20,43 +20,24 @@ namespace EasyMvvm
 
     public class IocContainer
     {
-        private Guid _id = Guid.NewGuid();
         private Dictionary<string, IocCacheData> _cache = new Dictionary<string, IocCacheData>();
-
-        /// <summary>
-        /// 自动生成类型名称作为key
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public IocContainer SingletonDefault<T>()
-        {
-            return Singleton<T>(typeof(T).Name);
-        }
 
         public IocContainer Singleton<T>(string key = null)
         {
+            if (string.IsNullOrEmpty(key))
+                key = typeof(T).Name;
+
             Register<T>(key, true);
             return this;
         }
 
-        public IocContainer PerRequestDefault<T>()
-        {
-            return PerRequest<T>(typeof(T).Name);
-        }
         public IocContainer PerRequest<T>(string key = null)
         {
+            if (string.IsNullOrEmpty(key))
+                key = typeof(T).Name;
+
             Register<T>(key, false);
             return this;
-        }
-
-        public object GetDefault<T>()
-        {
-            return Get(typeof(T).Name);
-        }
-
-        public object GetDefault(Type type)
-        {
-            return Get(type.Name);
         }
 
         public T Get<T>(string key = null) where T : object
@@ -68,6 +49,11 @@ namespace EasyMvvm
                 result = (T)Get(key);
             return result;
         }
+
+        //public IocContainer Instance(object obj)
+        //{
+        //    return this;
+        //}
 
         public object Get(Type type)
         {
@@ -112,11 +98,9 @@ namespace EasyMvvm
 
         #region private
 
-        //没有主动设置key，就用默认key
         private string GetDefaultName(Type type)
         {
-            //加guid是为了防止，设置同名key覆盖掉默认的对象
-            string name = type.Name + _id.ToString();
+            string name = type.Name;
             return name;
         }
 
