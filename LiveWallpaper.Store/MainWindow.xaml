@@ -5,12 +5,13 @@
     xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:easyXAml="clr-namespace:EasyMvvm.Xaml;assembly=EasyMvvm"
+    xmlns:lan="clr-namespace:MultiLanguageManager;assembly=MultiLanguageManager.WPF"
     xmlns:local="clr-namespace:LiveWallpaper.Store"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
     Width="800"
     Height="450"
+    lan:Xaml.Key="common_appName"
     mc:Ignorable="d">
     <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
@@ -27,8 +28,8 @@
                         Margin="0,16,0,16"
                         easyXAml:EasyBind.Model="AppMenuViewModel"
                         DisplayMemberPath="Name"
-                        PreviewMouseLeftButtonUp="LstBoxMenu_PreviewMouseLeftButtonUp"
                         ItemsSource="{Binding Menus}"
+                        PreviewMouseLeftButtonUp="LstBoxMenu_PreviewMouseLeftButtonUp"
                         SelectedIndex="0">
                         <Behaviors:Interaction.Triggers>
                             <Behaviors:EventTrigger EventName="SelectionChanged">
@@ -40,7 +41,7 @@
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone
-                    Padding="16"
+                    Padding="6"
                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
                     DockPanel.Dock="Top"
                     Mode="PrimaryMid">
@@ -64,9 +65,7 @@
                         <TextBlock
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            FontSize="22">
-                            Material Design In XAML Toolkit
-                        </TextBlock>
+                            FontSize="22" />
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
@@ -74,7 +73,6 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button>Header</Button>
                     <ScrollViewer Grid.Row="1">
                         <ContentControl x:Name="Content" />
                     </ScrollViewer>
