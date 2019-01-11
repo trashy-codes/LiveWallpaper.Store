@@ -11,6 +11,7 @@ namespace LiveWallpaper.Store.ViewModels
 {
     public class WallpapersViewModel : EasyViewModel
     {
+        int _pageIndex = 0;
         LocalServer _localServer;
         public WallpapersViewModel(LocalServer server)
         {
@@ -99,6 +100,7 @@ namespace LiveWallpaper.Store.ViewModels
                 if (_SelectedTag == value) return;
 
                 _SelectedTag = value;
+                ReLoadWallpapers();
                 NotifyOfPropertyChange(SelectedTagPropertyName);
             }
         }
@@ -153,9 +155,11 @@ namespace LiveWallpaper.Store.ViewModels
                 if (_SelectedSort == value) return;
 
                 _SelectedSort = value;
+                ReLoadWallpapers();
                 NotifyOfPropertyChange(SelectedSortPropertyName);
             }
         }
+
 
         #endregion
 
@@ -166,12 +170,12 @@ namespace LiveWallpaper.Store.ViewModels
         /// </summary>
         public const string WallpapersPropertyName = "Wallpapers";
 
-        private List<WallpaperServerObj> _Wallpapers;
+        private ObservableCollection<WallpaperServerObj> _Wallpapers;
 
         /// <summary>
         /// Wallpapers
         /// </summary>
-        public List<WallpaperServerObj> Wallpapers
+        public ObservableCollection<WallpaperServerObj> Wallpapers
         {
             get { return _Wallpapers; }
 
@@ -217,6 +221,13 @@ namespace LiveWallpaper.Store.ViewModels
 
         #region methods
 
+        private void ReLoadWallpapers()
+        {
+            _pageIndex = 0;
+            Wallpapers?.Clear();
+            LoadWallpapers();
+        }
+
         public async Task LoadTagsAndSorts()
         {
             var tempTag = await _localServer.GetTags();
@@ -234,6 +245,26 @@ namespace LiveWallpaper.Store.ViewModels
             Sorts = new ObservableCollection<SortServerObj>(tempSort);
             if (Sorts != null && Sorts.Count > 0)
                 SelectedSort = Sorts[0];
+            LoadWallpapers();
+        }
+
+        public async void LoadWallpapers()
+        {
+            if (SelectedTag == null || SelectedSort == null)
+                return;
+
+            if (Wallpapers == null)
+                Wallpapers = new ObservableCollection<WallpaperServerObj>();
+
+            IsBusy = true;
+            var tempList = await _localServer.GetWallpapers(SelectedTag.ID, SelectedSort.ID, _pageIndex++);
+            IsBusy = false;
+
+            if (tempList == null)
+                return;
+
+            tempList.ForEach(m => Wallpapers.Add(m));
+
         }
 
         #endregion
