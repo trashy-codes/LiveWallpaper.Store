@@ -31,8 +31,8 @@ namespace LiveWallpaper.Server
                 });
                 if (!_fuckMS)
                 {
-                    // "鬼畜", "美の風景, "科幻世界""
-                    string[] names = new string[] { "游戏风象" };
+                    // "鬼畜", "美の風景, "科幻世界","游戏风象"
+                    string[] names = new string[] { "美の風景" };
                     result = result.Where(m => names.Contains(m.Name)).ToList();
                 }
                 return result;

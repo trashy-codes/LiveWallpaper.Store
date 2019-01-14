@@ -16,7 +16,7 @@ namespace LiveWallpaper.Store.ViewModels
         public WallpapersViewModel(LocalServer server)
         {
             _localServer = server;
-            _localServer.UnLock("whosyourdady");
+            //_localServer.UnLock("whosyourdady");
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             LoadTagsAndSorts();
