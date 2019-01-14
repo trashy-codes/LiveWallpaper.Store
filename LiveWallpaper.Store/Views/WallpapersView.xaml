@@ -66,6 +66,8 @@
             </Grid.ColumnDefinitions>
             <ListBox
                 x:Name="lstboxWallpaers"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
                 ItemsSource="{Binding Wallpapers}"
                 SelectedItem="{Binding SelectedWallpaper}">
                 <ListBox.ItemsPanel>
@@ -75,13 +77,24 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Background="LightGray" ToolTipService.ToolTip="{Binding Name}">
+                        <Grid
+                            Height="109"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="LightGray"
+                            ToolTipService.ToolTip="{Binding Name}">
                             <Image
                                 Grid.Row="1"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Source="{Binding Img}"
-                                Stretch="Uniform" />
+                                Stretch="Uniform">
+                                <Image.Source>
+                                    <BitmapImage
+                                        CacheOption="OnLoad"
+                                        DecodePixelWidth="109"
+                                        UriSource="{Binding Img}" />
+                                </Image.Source>
+                            </Image>
                             <TextBlock
                                 Margin="0,5,0,0"
                                 HorizontalAlignment="Right"
