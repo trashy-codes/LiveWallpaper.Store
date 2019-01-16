@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Mvvm.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LiveWallpaper.Server
 {
-    public class WallpaperServerObj : ObservableObject
+    public class WallpaperServerObj : ObservableObj
     {
         #region URL
 

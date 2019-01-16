@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Mvvm.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LiveWallpaper.Server
 {
-    public class SortServerObj : ObservableObject
+    public class SortServerObj : ObservableObj
     {
         public int ID { get; set; }
 

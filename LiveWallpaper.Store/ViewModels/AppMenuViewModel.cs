@@ -1,4 +1,5 @@
 ﻿using EasyMvvm;
+using Mvvm.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace LiveWallpaper.Store.ViewModels
         public Type TargetType { get; set; }
     }
 
-    public class AppMenuViewModel : EasyObservableObject
+    public class AppMenuViewModel : ObservableObj
     {
         public AppMenuViewModel()
         {

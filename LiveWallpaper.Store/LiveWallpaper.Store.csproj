@@ -141,6 +141,10 @@
       <Project>{52cb7228-2753-406d-9d3c-8cf57eb9f7c4}</Project>
       <Name>LiveWallpaper.Server</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mvvm.Base\Mvvm.Base.csproj">
+      <Project>{7C0BB0D3-0828-464C-96B8-653D196B72DF}</Project>
+      <Name>Mvvm.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

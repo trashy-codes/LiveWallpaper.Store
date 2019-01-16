@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Mvvm.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LiveWallpaper.Server
 {
-    public class TagServerObj : ObservableObject
+    public class TagServerObj : ObservableObj
     {
         public int ID { get; set; }
 
