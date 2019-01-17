@@ -7,5 +7,9 @@ namespace EasyMvvm
 {
     public class EasyViewModel : ObservableObj
     {
+        /// <summary>
+        /// view是否启动单实例
+        /// </summary>
+        public bool SingletonView { get; set; } = false;
     }
 }

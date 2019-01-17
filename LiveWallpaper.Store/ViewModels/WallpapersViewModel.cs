@@ -15,6 +15,7 @@ namespace LiveWallpaper.Store.ViewModels
         LocalServer _localServer;
         public WallpapersViewModel(LocalServer server)
         {
+            SingletonView = true;
             _localServer = server;
             //_localServer.UnLock("whosyourdady");
 
