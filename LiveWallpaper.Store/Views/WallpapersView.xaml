@@ -12,6 +12,9 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid x:Name="ContentArea">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -40,6 +43,51 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
+        <StackPanel
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Margin="10,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Orientation="Horizontal"
+            Visibility="{Binding CanDownload, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!--  floating action button with progress  -->
+            <TextBlock Margin="24,0,0,0" VerticalAlignment="Center">
+                <Run lan:Xaml.Key="common_download" />
+                <Run Text=" :" />
+            </TextBlock>
+            <Button
+                Margin="8,0,0,0"
+                materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
+                materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
+                Command="{Binding SaveComand}"
+                Style="{StaticResource MaterialDesignFloatingActionLightButton}">
+                <!--  simple example of toggling/animating pack icon with a data trigger  -->
+                <materialDesign:PackIcon Width="24" Height="24">
+                    <materialDesign:PackIcon.Style>
+                        <Style BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}" TargetType="materialDesign:PackIcon">
+                            <Setter Property="Kind" Value="Download" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSaveComplete}" Value="True">
+                                    <Setter Property="Kind" Value="Check" />
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    From="0"
+                                                    To="1"
+                                                    Duration="0:0:0.8" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+            </Button>
+        </StackPanel>
         <TextBlock
             Grid.Row="1"
             HorizontalAlignment="Center"
@@ -62,7 +110,7 @@
         </ListBox>
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="410" />
+                <ColumnDefinition Width="380" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ListBox
@@ -79,7 +127,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid
-                            Height="109"
+                            Height="92"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             Background="LightGray"
@@ -115,20 +163,47 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <MpvPlayer:MpvPlayerControl
-                x:Name="player"
-                Grid.Column="1"
-                Margin="5"
-                IsLoop="True"
-                Source="{Binding SelectedWallpaper.URL}" />
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBlock
+                        Margin="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="11"
+                        Text="{Binding SelectedWallpaper.Name}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Margin="0,0,12,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="11"
+                        Foreground="Gray"
+                        Visibility="{Binding CanDownload, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Run lan:Xaml.Key="wallpapers_downloadCount" />
+                        <Run Text="{Binding SelectedWallpaper.DownStr}" />
+                    </TextBlock>
+                </Grid>
+                <MpvPlayer:MpvPlayerControl
+                    x:Name="player"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="5"
+                    IsLoop="True"
+                    Source="{Binding SelectedWallpaper.URL}" />
+
+            </Grid>
         </Grid>
         <Button
             x:Name="btnBusy"
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
-            Margin="0,0,0,60"
+            Margin="0,50,0,0"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             lan:Xaml.Key="common_loading"
             materialDesign:ButtonProgressAssist.IsIndeterminate="True"
             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"

@@ -55,11 +55,11 @@
                             PlacementMode="BottomAndAlignRightEdges"
                             StaysOpen="False">
                             <StackPanel>
-                                <Button Content="Hello World" />
-                                <Button Content="Nice Popup" />
+                                <Button lan:Xaml.Key="main_about" />
+                                <!--<Button Content="Nice Popup" />
                                 <Button Content="Can't Touch This" IsEnabled="False" />
                                 <Separator />
-                                <Button Content="Goodbye" />
+                                <Button Content="Goodbye" />-->
                             </StackPanel>
                         </materialDesign:PopupBox>
                         <TextBlock

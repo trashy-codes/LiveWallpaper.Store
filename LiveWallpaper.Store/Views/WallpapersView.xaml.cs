@@ -26,7 +26,19 @@ namespace LiveWallpaper.Store.Views
         {
             InitializeComponent();
             LastPlayer = player;
+            Unloaded += WallpapersView_Unloaded;
+            Loaded += WallpapersView_Loaded;
             //player.Play(@"C:\Users\zy\Videos\Captures\No Man's Sky 2018_10_19 12_30_37.mp4");
+        }
+
+        private void WallpapersView_Loaded(object sender, RoutedEventArgs e)
+        {
+            player.Resume();
+        }
+
+        private void WallpapersView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            player.Pause();
         }
     }
 }

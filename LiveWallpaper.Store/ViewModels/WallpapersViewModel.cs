@@ -17,7 +17,7 @@ namespace LiveWallpaper.Store.ViewModels
         {
             SingletonView = true;
             _localServer = server;
-            //_localServer.UnLock("whosyourdady");
+            _localServer.UnLock("whosyourdady");
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             LoadTagsAndSorts();
@@ -212,7 +212,35 @@ namespace LiveWallpaper.Store.ViewModels
                 if (_SelectedWallpaper == value) return;
 
                 _SelectedWallpaper = value;
+                CanDownload = value != null;
                 NotifyOfPropertyChange(SelectedWallpaperPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region CanDownload
+
+        /// <summary>
+        /// The <see cref="CanDownload" /> property's name.
+        /// </summary>
+        public const string CanDownloadPropertyName = "CanDownload";
+
+        private bool _CanDownload;
+
+        /// <summary>
+        /// CanDownload
+        /// </summary>
+        public bool CanDownload
+        {
+            get { return _CanDownload; }
+
+            set
+            {
+                if (_CanDownload == value) return;
+
+                _CanDownload = value;
+                NotifyOfPropertyChange(CanDownloadPropertyName);
             }
         }
 
@@ -258,6 +286,7 @@ namespace LiveWallpaper.Store.ViewModels
                 Wallpapers = new ObservableCollection<WallpaperServerObj>();
 
             IsBusy = true;
+            await Task.Delay(1000);
             var tempList = await _localServer.GetWallpapers(SelectedTag.ID, SelectedSort.ID, _pageIndex++);
             IsBusy = false;
 

@@ -1,7 +1,10 @@
 ﻿//命名规则，模块_语言Key
 {
   "common_appName": "巨应壁纸商城",
+  "common_download": "下载",
   "common_loading": "加载中...",
   "wallpapers_tags": "标签：",
-  "wallpapers_sorts": "排序："
+  "wallpapers_sorts": "排序：",
+  "wallpapers_downloadCount": "下载量：",
+  "main_about": "关于"
 }
