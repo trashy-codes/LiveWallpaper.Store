@@ -45,8 +45,17 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Mpv.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mpv.NET.1.0.0\lib\netstandard2.0\Mpv.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="MpvPlayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MpvPlayer.1.0.0\lib\net47\MpvPlayer.dll</HintPath>
+    </Reference>
     <Reference Include="MultiLanguageManager.WPF, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MultiLanguageForXAML.1.0.0.18\lib\net46\MultiLanguageManager.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Mvvm.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mvvm.Base.1.0.0\lib\netstandard2.0\Mvvm.Base.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -115,6 +124,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="lib\mpv-1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -140,10 +152,6 @@
     <ProjectReference Include="..\LiveWallpaper.Server\LiveWallpaper.Server.csproj">
       <Project>{52cb7228-2753-406d-9d3c-8cf57eb9f7c4}</Project>
       <Name>LiveWallpaper.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mvvm.Base\Mvvm.Base.csproj">
-      <Project>{7C0BB0D3-0828-464C-96B8-653D196B72DF}</Project>
-      <Name>Mvvm.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
