@@ -23,7 +23,7 @@ namespace LiveWallpaper.Store.Views
         public WallpapersView()
         {
             InitializeComponent();
-            player.Play(@"C:\Users\zy\Videos\Captures\No Man's Sky 2018_10_19 12_30_37.mp4");
+            //player.Play(@"C:\Users\zy\Videos\Captures\No Man's Sky 2018_10_19 12_30_37.mp4");
         }
     }
 }

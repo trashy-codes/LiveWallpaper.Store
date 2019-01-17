@@ -115,7 +115,12 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <MpvPlayer:MpvPlayerControl Margin="5" x:Name="player" Grid.Column="1" />
+            <MpvPlayer:MpvPlayerControl
+                x:Name="player"
+                Grid.Column="1"
+                Margin="5"
+                IsLoop="True"
+                Source="{Binding SelectedWallpaper.URL}" />
         </Grid>
         <Button
             x:Name="btnBusy"
