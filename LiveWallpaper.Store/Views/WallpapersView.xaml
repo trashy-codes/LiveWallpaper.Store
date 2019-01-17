@@ -58,9 +58,10 @@
             </TextBlock>
             <Button
                 Margin="8,0,0,0"
-                materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
-                materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
-                Command="{Binding SaveComand}"
+                materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding Downloading}"
+                materialDesign:ButtonProgressAssist.Maximum="{Binding TotalBytesToReceive}"
+                materialDesign:ButtonProgressAssist.Value="{Binding BytesReceived}"
+                Command="{Binding DownloadCommand}"
                 Style="{StaticResource MaterialDesignFloatingActionLightButton}">
                 <!--  simple example of toggling/animating pack icon with a data trigger  -->
                 <materialDesign:PackIcon Width="24" Height="24">

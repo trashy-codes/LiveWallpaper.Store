@@ -1,11 +1,17 @@
 ﻿using EasyMvvm;
 using LiveWallpaper.Server;
+using Mvvm.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LiveWallpaper.Store.ViewModels
 {
@@ -213,6 +219,7 @@ namespace LiveWallpaper.Store.ViewModels
 
                 _SelectedWallpaper = value;
                 CanDownload = value != null;
+                DownloadCommand.RaiseCanExecuteChanged();
                 NotifyOfPropertyChange(SelectedWallpaperPropertyName);
             }
         }
@@ -242,6 +249,156 @@ namespace LiveWallpaper.Store.ViewModels
                 _CanDownload = value;
                 NotifyOfPropertyChange(CanDownloadPropertyName);
             }
+        }
+
+        #endregion
+
+        #region Downloading
+
+        /// <summary>
+        /// The <see cref="Downloading" /> property's name.
+        /// </summary>
+        public const string DownloadingPropertyName = "Downloading";
+
+        private bool _Downloading;
+
+        /// <summary>
+        /// Downloading
+        /// </summary>
+        public bool Downloading
+        {
+            get { return _Downloading; }
+
+            set
+            {
+                if (_Downloading == value) return;
+
+                _Downloading = value;
+                NotifyOfPropertyChange(DownloadingPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region BytesReceived
+
+        /// <summary>
+        /// The <see cref="BytesReceived" /> property's name.
+        /// </summary>
+        public const string BytesReceivedPropertyName = "BytesReceived";
+
+        private double _BytesReceived;
+
+        /// <summary>
+        /// BytesReceived
+        /// </summary>
+        public double BytesReceived
+        {
+            get { return _BytesReceived; }
+
+            set
+            {
+                if (_BytesReceived == value) return;
+
+                _BytesReceived = value;
+                NotifyOfPropertyChange(BytesReceivedPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region TotalBytesToReceive
+
+        /// <summary>
+        /// The <see cref="TotalBytesToReceive" /> property's name.
+        /// </summary>
+        public const string TotalBytesToReceivePropertyName = "TotalBytesToReceive";
+
+        private double _TotalBytesToReceive;
+
+        /// <summary>
+        /// TotalBytesToReceive
+        /// </summary>
+        public double TotalBytesToReceive
+        {
+            get { return _TotalBytesToReceive; }
+
+            set
+            {
+                if (_TotalBytesToReceive == value) return;
+
+                _TotalBytesToReceive = value;
+                NotifyOfPropertyChange(TotalBytesToReceivePropertyName);
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Commands
+
+        #region DownloadCommand 
+
+        private DelegateCommand _DownloadCommand;
+
+        /// <summary>
+        /// Gets the DownloadCommand.
+        /// </summary>
+        public DelegateCommand DownloadCommand
+        {
+            get
+            {
+                return _DownloadCommand ?? (_DownloadCommand = new DelegateCommand(ExecuteDownloadCommand, CanExecuteDownloadCommand));
+            }
+        }
+
+        private async void ExecuteDownloadCommand()
+        {
+            var selected = SelectedWallpaper;
+            if (Downloading || selected == null)
+                return;
+
+            try
+            {
+                Downloading = true;
+                WebClient client = new WebClient();
+                string saveDir = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
+                saveDir = Path.Combine(saveDir, "LivewallpaperCache", Guid.NewGuid().ToString());
+                Directory.CreateDirectory(saveDir);
+
+                string previewPath = $"preview{ Path.GetExtension(selected.Img)}";
+                previewPath = Path.Combine(saveDir, previewPath);
+                string videoPath = $"index{ Path.GetExtension(selected.URL)}";
+                videoPath = Path.Combine(saveDir, videoPath);
+
+                await client.DownloadFileTaskAsync(new Uri(selected.Img), previewPath);
+
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+
+                client.DownloadFileAsync(new Uri(selected.URL), videoPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            BytesReceived = e.BytesReceived;
+            TotalBytesToReceive = e.TotalBytesToReceive;
+            //System.Diagnostics.Debug.WriteLine(e.BytesReceived + "|" + e.TotalBytesToReceive);
+        }
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            Downloading = false;
+        }
+
+        private bool CanExecuteDownloadCommand()
+        {
+            return SelectedWallpaper != null;
         }
 
         #endregion
