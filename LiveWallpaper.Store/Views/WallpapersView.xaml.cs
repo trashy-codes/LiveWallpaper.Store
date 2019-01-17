@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MpvPlayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace LiveWallpaper.Store.Views
     /// </summary>
     public partial class WallpapersView : UserControl
     {
+        public static MpvPlayerControl LastPlayer { private set; get; }
         public WallpapersView()
         {
             InitializeComponent();
+            LastPlayer = player;
             //player.Play(@"C:\Users\zy\Videos\Captures\No Man's Sky 2018_10_19 12_30_37.mp4");
         }
     }

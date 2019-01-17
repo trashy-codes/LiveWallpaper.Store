@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LiveWallpaper.Store.Views;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,13 @@ namespace LiveWallpaper.Store
             Instance = this;
             InitializeComponent();
             Loaded += MainWindow_Loaded;
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (WallpapersView.LastPlayer != null)
+                WallpapersView.LastPlayer.Dispose();
+            base.OnClosing(e);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)

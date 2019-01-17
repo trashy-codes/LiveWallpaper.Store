@@ -18,7 +18,6 @@ namespace LiveWallpaper.Store
                 return;
 
             MainWindow.Instance.SetContent(control);
-            base.Show(vm);
         }
     }
 }
