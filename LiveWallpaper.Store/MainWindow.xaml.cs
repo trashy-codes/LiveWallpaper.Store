@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,6 +62,17 @@ namespace LiveWallpaper.Store
             lastContent = control;
             if (Content != null)
                 Content.Content = control;
+        }
+
+        private void btnAbout_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start("https://www.mscoder.cn/product/livewallpaper/");
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

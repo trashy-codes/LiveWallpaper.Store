@@ -434,6 +434,28 @@ namespace LiveWallpaper.Store.ViewModels
 
         #endregion
 
+        #region LoadMoreWallpapersCommand
+
+        private DelegateCommand _LoadMoreWallpapersCommand;
+
+        /// <summary>
+        /// Gets the LoadMoreWallpapersCommand.
+        /// </summary>
+        public DelegateCommand LoadMoreWallpapersCommand
+        {
+            get
+            {
+                return _LoadMoreWallpapersCommand ?? (_LoadMoreWallpapersCommand = new DelegateCommand(ExecuteLoadMoreWallpapersCommand));
+            }
+        }
+
+        private void ExecuteLoadMoreWallpapersCommand()
+        {
+            LoadWallpapers();
+        }
+
+        #endregion
+
         #endregion
 
         #region methods
@@ -481,7 +503,6 @@ namespace LiveWallpaper.Store.ViewModels
                 return;
 
             tempList.ForEach(m => Wallpapers.Add(m));
-
         }
 
         #endregion

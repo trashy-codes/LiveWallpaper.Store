@@ -55,7 +55,7 @@
                             PlacementMode="BottomAndAlignRightEdges"
                             StaysOpen="False">
                             <StackPanel>
-                                <Button lan:Xaml.Key="main_about" />
+                                <Button lan:Xaml.Key="main_about" Click="btnAbout_Click" />
                                 <!--<Button Content="Nice Popup" />
                                 <Button Content="Can't Touch This" IsEnabled="False" />
                                 <Separator />

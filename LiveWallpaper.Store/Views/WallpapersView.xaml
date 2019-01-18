@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:MpvPlayer="clr-namespace:MpvPlayer;assembly=MpvPlayer"
+    xmlns:controls="clr-namespace:LiveWallpaper.Store.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:lan="clr-namespace:MultiLanguageManager;assembly=MultiLanguageManager.WPF"
     xmlns:local="clr-namespace:LiveWallpaper.Store.Views"
@@ -127,20 +128,26 @@
                 <ColumnDefinition Width="380" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListBox
+            <controls:ListBoxEx
                 x:Name="lstboxWallpaers"
                 HorizontalContentAlignment="Stretch"
-                VerticalContentAlignment="Stretch"                
+                VerticalContentAlignment="Stretch"
                 ItemsSource="{Binding Wallpapers}"
                 SelectedItem="{Binding SelectedWallpaper}"
+                Style="{StaticResource {x:Type ListBox}}"
                 VirtualizingPanel.IsVirtualizing="True"
                 VirtualizingPanel.VirtualizationMode="Recycling">
-                <ListBox.ItemsPanel>
+                <Behaviors:Interaction.Triggers>
+                    <Behaviors:EventTrigger EventName="ReachBottom">
+                        <Behaviors:InvokeCommandAction Command="{Binding LoadMoreWallpapersCommand}" />
+                    </Behaviors:EventTrigger>
+                </Behaviors:Interaction.Triggers>
+                <controls:ListBoxEx.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="2" IsItemsHost="True" />
                     </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
+                </controls:ListBoxEx.ItemsPanel>
+                <controls:ListBoxEx.ItemTemplate>
                     <DataTemplate>
                         <Grid
                             Height="92"
@@ -177,8 +184,8 @@
                                 Text="{Binding Name}" />
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </controls:ListBoxEx.ItemTemplate>
+            </controls:ListBoxEx>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
