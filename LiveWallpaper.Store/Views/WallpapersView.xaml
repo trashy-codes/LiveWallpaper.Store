@@ -130,12 +130,14 @@
             <ListBox
                 x:Name="lstboxWallpaers"
                 HorizontalContentAlignment="Stretch"
-                VerticalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"                
                 ItemsSource="{Binding Wallpapers}"
-                SelectedItem="{Binding SelectedWallpaper}">
+                SelectedItem="{Binding SelectedWallpaper}"
+                VirtualizingPanel.IsVirtualizing="True"
+                VirtualizingPanel.VirtualizationMode="Recycling">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="2" />
+                        <UniformGrid Columns="2" IsItemsHost="True" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>

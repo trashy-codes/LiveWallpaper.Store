@@ -11,5 +11,13 @@ namespace EasyMvvm
         /// view是否启动单实例
         /// </summary>
         public bool SingletonView { get; set; } = false;
+
+        /// <summary>
+        /// view已加载
+        /// </summary>
+        public virtual void OnViewLoaded()
+        {
+
+        }
     }
 }

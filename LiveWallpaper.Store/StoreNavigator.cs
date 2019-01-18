@@ -17,7 +17,22 @@ namespace LiveWallpaper.Store
             if (control == null)
                 return;
 
+            control.Loaded += Control_Loaded;
+            control.Tag = vm;
+
             MainWindow.Instance.SetContent(control);
+        }
+
+        private void Control_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var control = sender as UserControl;
+            control.Loaded -= Control_Loaded;
+
+            var tmpVM = control.Tag as EasyViewModel;
+            if (tmpVM != null)
+            {
+                tmpVM.OnViewLoaded();
+            }
         }
     }
 }

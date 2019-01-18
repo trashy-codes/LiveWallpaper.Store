@@ -25,10 +25,15 @@ namespace LiveWallpaper.Store.ViewModels
             SingletonView = true;
             _localServer = server;
             _localServer.UnLock("whosyourdady");
+        }
 
+        public override void OnViewLoaded()
+        {
+            base.OnViewLoaded();
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             LoadTagsAndSorts();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
         }
 
         #region  properties
@@ -469,7 +474,6 @@ namespace LiveWallpaper.Store.ViewModels
                 Wallpapers = new ObservableCollection<WallpaperServerObj>();
 
             IsBusy = true;
-            await Task.Delay(1000);
             var tempList = await _localServer.GetWallpapers(SelectedTag.ID, SelectedSort.ID, _pageIndex++);
             IsBusy = false;
 
