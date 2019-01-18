@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -80,13 +81,25 @@ namespace LiveWallpaper.Store.Controls
             }
         }
 
+        protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
+        {
+            base.OnItemsSourceChanged(oldValue, newValue);
+            var oldList = oldValue as ICollection;
+            var newList = newValue as ICollection;
+            if ((oldList == null || oldList.Count == 0) && (newList != null && newList.Count > 0)
+                || (oldList != null && newList != null && oldList.Count == newList.Count))
+            {
+                ScrollIntoView(Items[0]);
+            }
+        }
+
         protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
         {
             base.OnItemsChanged(e);
             //切换数据源后归位
             if (e.Action == NotifyCollectionChangedAction.Add && this.Items.Count == 1)
             {
-                this.ScrollIntoView(this.Items[0]);
+                ScrollIntoView(this.Items[0]);
             }
         }
     }

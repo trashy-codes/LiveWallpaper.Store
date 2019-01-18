@@ -183,12 +183,12 @@ namespace LiveWallpaper.Store.ViewModels
         /// </summary>
         public const string WallpapersPropertyName = "Wallpapers";
 
-        private ObservableCollection<WallpaperServerObj> _Wallpapers;
+        private List<WallpaperServerObj> _Wallpapers;
 
         /// <summary>
         /// Wallpapers
         /// </summary>
-        public ObservableCollection<WallpaperServerObj> Wallpapers
+        public List<WallpaperServerObj> Wallpapers
         {
             get { return _Wallpapers; }
 
@@ -463,7 +463,7 @@ namespace LiveWallpaper.Store.ViewModels
         private void ReLoadWallpapers()
         {
             _pageIndex = 0;
-            Wallpapers?.Clear();
+            Wallpapers = null;
             LoadWallpapers();
         }
 
@@ -475,7 +475,10 @@ namespace LiveWallpaper.Store.ViewModels
             Tags = new ObservableCollection<TagServerObj>(tempTag);
 
             if (Tags != null && Tags.Count > 0)
-                SelectedTag = Tags[0];
+            {
+                _SelectedTag = Tags[0];
+                NotifyOfPropertyChange(SelectedTagPropertyName);
+            }
 
             var tempSort = await _localServer.GetSorts();
             if (tempSort == null)
@@ -483,7 +486,10 @@ namespace LiveWallpaper.Store.ViewModels
 
             Sorts = new ObservableCollection<SortServerObj>(tempSort);
             if (Sorts != null && Sorts.Count > 0)
-                SelectedSort = Sorts[0];
+            {
+                _SelectedSort = Sorts[0];
+                NotifyOfPropertyChange(SelectedSortPropertyName);
+            }
             LoadWallpapers();
         }
 
@@ -493,7 +499,7 @@ namespace LiveWallpaper.Store.ViewModels
                 return;
 
             if (Wallpapers == null)
-                Wallpapers = new ObservableCollection<WallpaperServerObj>();
+                Wallpapers = new List<WallpaperServerObj>();
 
             IsBusy = true;
             var tempList = await _localServer.GetWallpapers(SelectedTag.ID, SelectedSort.ID, _pageIndex++);
@@ -502,7 +508,10 @@ namespace LiveWallpaper.Store.ViewModels
             if (tempList == null)
                 return;
 
-            tempList.ForEach(m => Wallpapers.Add(m));
+            Wallpapers.AddRange(tempList);
+            Wallpapers = new List<WallpaperServerObj>(Wallpapers);
+            //NotifyOfPropertyChange(WallpapersPropertyName);
+            //tempList.ForEach(m => Wallpapers.Add(m));
         }
 
         #endregion
