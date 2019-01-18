@@ -1,6 +1,7 @@
 ﻿using EasyMvvm;
 using LiveWallpaper.Server;
 using Mvvm.Base;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -368,20 +369,45 @@ namespace LiveWallpaper.Store.ViewModels
                 Directory.CreateDirectory(saveDir);
 
                 string previewPath = $"preview{ Path.GetExtension(selected.Img)}";
-                previewPath = Path.Combine(saveDir, previewPath);
                 string videoPath = $"index{ Path.GetExtension(selected.URL)}";
+
+                //json
+                ProjectInfo info = new ProjectInfo
+                {
+                    Title = selected.Name,
+                    Type = WallpaperType.Video.ToString(),
+                    Preview = previewPath,
+                    File = videoPath
+                };
+                var json = JsonConvert.SerializeObject(info);
+                var projectFile = Path.Combine(saveDir, "project.json");
+
+                await WriteTextAsync(projectFile, json);
+
+                previewPath = Path.Combine(saveDir, previewPath);
                 videoPath = Path.Combine(saveDir, videoPath);
 
+                //图片
                 await client.DownloadFileTaskAsync(new Uri(selected.Img), previewPath);
 
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 
+                //视频
                 client.DownloadFileAsync(new Uri(selected.URL), videoPath);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        static async Task WriteTextAsync(string filePath, string text)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath, false))
+            {
+                await writer.WriteAsync(text);
             }
         }
 

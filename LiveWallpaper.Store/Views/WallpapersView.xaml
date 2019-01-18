@@ -51,6 +51,19 @@
             VerticalAlignment="Center"
             Orientation="Horizontal"
             Visibility="{Binding CanDownload, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid Width="124" Visibility="{Binding Downloading, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <!--  raised button with progress, useful to auto dismiss/accept something  -->
+                <Button
+                    HorizontalAlignment="Stretch"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding Downloading}"
+                    materialDesign:ButtonProgressAssist.Maximum="{Binding TotalBytesToReceive}"
+                    materialDesign:ButtonProgressAssist.Value="{Binding BytesReceived}"
+                    Command="{Binding DismissComand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Visibility="{Binding Downloading, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock lan:Xaml.Key="common_downloading" />
+                </Button>
+            </Grid>
             <!--  floating action button with progress  -->
             <TextBlock Margin="24,0,0,0" VerticalAlignment="Center">
                 <Run lan:Xaml.Key="common_download" />
