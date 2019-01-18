@@ -4,7 +4,7 @@
   <Properties>
     <DisplayName>巨应动态壁纸商店</DisplayName>
     <PublisherDisplayName>巨应工作室  MscoderStudio</PublisherDisplayName>
-    <Logo>Images\StoreLogo.png</Logo>
+    <Logo>assets\Store\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
@@ -15,9 +15,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
-      <uap:VisualElements DisplayName="巨应动态壁纸商店" Description="App" BackgroundColor="transparent" Square150x150Logo="Images\Square150x150Logo.png" Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png">
-        </uap:DefaultTile>
+      <uap:VisualElements DisplayName="巨应动态壁纸商店" Description="App" BackgroundColor="transparent" Square150x150Logo="assets\Medium\Medium150x150Logo.png" Square44x44Logo="assets\AppList\AppList.png">
+        <uap:DefaultTile Wide310x150Logo="assets\Wide\Wide310x150Logo.png" Square71x71Logo="assets\Small\Small71x71Logo.png" Square310x310Logo="assets\Large\Large310x310Logo.png"></uap:DefaultTile>
       </uap:VisualElements>
     </Application>
   </Applications>
