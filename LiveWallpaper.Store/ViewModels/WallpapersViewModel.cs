@@ -508,8 +508,9 @@ namespace LiveWallpaper.Store.ViewModels
             if (tempList == null)
                 return;
 
-            Wallpapers.AddRange(tempList);
-            Wallpapers = new List<WallpaperServerObj>(Wallpapers);
+            var newList = new List<WallpaperServerObj>(Wallpapers);
+            newList.AddRange(tempList);
+            Wallpapers = new List<WallpaperServerObj>(newList);
             //NotifyOfPropertyChange(WallpapersPropertyName);
             //tempList.ForEach(m => Wallpapers.Add(m));
         }
