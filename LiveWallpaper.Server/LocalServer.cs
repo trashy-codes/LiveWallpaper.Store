@@ -11,7 +11,7 @@ namespace LiveWallpaper.Server
 {
     public class LocalServer : IWallpaperServer
     {
-        string _host;
+        //string _host;
         bool _fuckMS = false;
 
         public async Task<List<TagServerObj>> GetTags()

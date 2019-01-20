@@ -1,0 +1,13 @@
+﻿{
+  "General": {
+    "lanKey": "setting_general",
+    "WallpaperSaveDir": {
+      "type": "string",
+      "lanKey": "setting_wallpaperDir"
+    },
+    "SecretKey": {
+      "type": "string",
+      "lanKey": "setting_secretKey"
+    }
+  }
+}
