@@ -68,7 +68,7 @@
       <HintPath>..\packages\DZY.DotNetUtil.UI.1.0.0.55\lib\net46\DZY.DotNetUtil.WPF.dll</HintPath>
     </Reference>
     <Reference Include="JsonConfiger.WPF, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JsonConfiger.1.0.0.46\lib\net46\JsonConfiger.WPF.dll</HintPath>
+      <HintPath>..\packages\JsonConfiger.1.0.0.52\lib\net46\JsonConfiger.WPF.dll</HintPath>
     </Reference>
     <Reference Include="LoadingIndicators.WPF, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LoadingIndicators.WPF.0.0.1\lib\LoadingIndicators.WPF.dll</HintPath>
@@ -142,6 +142,8 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settngs\GeneralSetting.cs" />
+    <Compile Include="Settngs\SettingObject.cs" />
     <Compile Include="StoreNavigator.cs" />
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
@@ -234,4 +236,5 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets'))" />
   </Target>
+  <ProjectExtensions />
 </Project>

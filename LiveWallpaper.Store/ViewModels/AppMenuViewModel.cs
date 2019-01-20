@@ -30,6 +30,7 @@ namespace LiveWallpaper.Store.ViewModels
                     TargetType=typeof(SettingViewModel)
                 }
             };
+            SelectedMenu = Menus[0];
             var vm = EasyManager.IoC.Get<WallpapersViewModel>();
             EasyManager.Navigator.Show(vm);
         }
@@ -61,32 +62,64 @@ namespace LiveWallpaper.Store.ViewModels
 
         #endregion
 
-        #region SelectMenuCommand
-
-        private DelegateCommand<MenuObj> _SelectMenuCommand;
+        #region SelectedMenu
 
         /// <summary>
-        /// Gets the SelectMenuCommand.
+        /// The <see cref="SelectedMenu" /> property's name.
         /// </summary>
-        public DelegateCommand<MenuObj> SelectMenuCommand
+        public const string SelectedMenuPropertyName = "SelectedMenu";
+
+        private MenuObj _SelectedMenu;
+
+        /// <summary>
+        /// SelectedMenu
+        /// </summary>
+        public MenuObj SelectedMenu
         {
-            get
+            get { return _SelectedMenu; }
+
+            set
             {
-                return _SelectMenuCommand ?? (_SelectMenuCommand = new DelegateCommand<MenuObj>(ExecuteSelectMenuCommand, CanExecuteSelectMenuCommand));
+                if (_SelectedMenu == value) return;
+
+                _SelectedMenu = value;
+
+                if (value != null)
+                {
+                    var vm = EasyManager.IoC.Get(value.TargetType);
+                    EasyManager.Navigator.Show(vm);
+                }
+                NotifyOfPropertyChange(SelectedMenuPropertyName);
             }
         }
 
-        private void ExecuteSelectMenuCommand(MenuObj parameter)
-        {
-            var vm = EasyManager.IoC.Get(parameter.TargetType);
-            EasyManager.Navigator.Show(vm);
-        }
-
-        private bool CanExecuteSelectMenuCommand(MenuObj parameter)
-        {
-            return true;
-        }
-
         #endregion
+
+        //#region SelectMenuCommand
+
+        //private DelegateCommand<MenuObj> _SelectMenuCommand;
+
+        ///// <summary>
+        ///// Gets the SelectMenuCommand.
+        ///// </summary>
+        //public DelegateCommand<MenuObj> SelectMenuCommand
+        //{
+        //    get
+        //    {
+        //        return _SelectMenuCommand ?? (_SelectMenuCommand = new DelegateCommand<MenuObj>(ExecuteSelectMenuCommand, CanExecuteSelectMenuCommand));
+        //    }
+        //}
+
+        //private void ExecuteSelectMenuCommand(MenuObj parameter)
+        //{
+        //    GoMenu(parameter);
+        //}
+
+        //private bool CanExecuteSelectMenuCommand(MenuObj parameter)
+        //{
+        //    return true;
+        //}
+
+        //#endregion
     }
 }

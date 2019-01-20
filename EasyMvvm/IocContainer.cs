@@ -50,10 +50,17 @@ namespace EasyMvvm
             return result;
         }
 
-        //public IocContainer Instance(object obj)
-        //{
-        //    return this;
-        //}
+        public IocContainer Instance<T>(T obj)
+        {
+            string key = typeof(T).Name;
+            _cache[key] = new IocCacheData(true)
+            {
+                TargetType = typeof(T),
+                Key = key,
+                Instance = obj
+            };
+            return this;
+        }
 
         public object Get(Type type)
         {

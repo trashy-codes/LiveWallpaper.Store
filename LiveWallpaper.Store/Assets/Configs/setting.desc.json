@@ -1,4 +1,5 @@
-﻿{
+﻿//配置描述文件
+{
   "General": {
     "lanKey": "setting_general",
     "WallpaperSaveDir": {

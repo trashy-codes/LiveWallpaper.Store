@@ -30,11 +30,13 @@ namespace LiveWallpaper.Store
             //mvvm初始化
             IocContainer container = new IocContainer();
             container
-                .Singleton<AppManager>()
                 .Singleton<LocalServer>()
                 .Singleton<WallpapersViewModel>()
                 .Singleton<SettingViewModel>()
                 .Singleton<AppMenuViewModel>();
+
+            AppManager appManager = new AppManager();
+            container.Instance(appManager);
 
             EasyManager.Initialize(container, new StoreNavigator());
             EasyManager.Associate<WallpapersView, WallpapersViewModel>();

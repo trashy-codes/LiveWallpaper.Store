@@ -7,5 +7,9 @@
   "wallpapers_tags": "标签：",
   "wallpapers_sorts": "排序：",
   "wallpapers_downloadCount": "下载量：",
-  "main_about": "关于"
+  "main_about": "关于",
+  "setting_general": "常规",
+  "setting_wallpaperDir": "下载目录",
+  "setting_secretKey": "口令",
+  "setting_apply": "应用设置"
 }

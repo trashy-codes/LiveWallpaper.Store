@@ -62,5 +62,17 @@ namespace EasyMvvm.Test
             Assert.Same(instanceA.A.Data, "A");
             Assert.Same(instanceB.A.Data, "A");
         }
+
+        [Fact]
+        public void Instance()
+        {
+            IocContainer container = new IocContainer();
+            TestObjA a = new TestObjA();
+            container.Instance(a);
+
+            var instanceA = container.Get<TestObjA>();
+
+            Assert.Same(a, instanceA);
+        }
     }
 }

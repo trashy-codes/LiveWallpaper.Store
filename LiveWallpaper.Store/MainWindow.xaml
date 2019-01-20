@@ -30,12 +30,13 @@
                         DisplayMemberPath="Name"
                         ItemsSource="{Binding Menus}"
                         PreviewMouseLeftButtonUp="LstBoxMenu_PreviewMouseLeftButtonUp"
-                        SelectedIndex="0">
-                        <Behaviors:Interaction.Triggers>
+                        SelectedIndex="0"
+                        SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
+                        <!--<Behaviors:Interaction.Triggers>
                             <Behaviors:EventTrigger EventName="SelectionChanged">
                                 <Behaviors:InvokeCommandAction Command="{Binding SelectMenuCommand}" CommandParameter="{Binding ElementName=lstBoxMenu, Path=SelectedItem}" />
                             </Behaviors:EventTrigger>
-                        </Behaviors:Interaction.Triggers>
+                        </Behaviors:Interaction.Triggers>-->
                     </ListBox>
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>

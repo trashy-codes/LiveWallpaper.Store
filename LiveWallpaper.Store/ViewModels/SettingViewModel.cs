@@ -2,6 +2,8 @@
 using EasyMvvm;
 using JsonConfiger;
 using JsonConfiger.Models;
+using Mvvm.Base;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,10 +25,12 @@ namespace LiveWallpaper.Store.ViewModels
 
         public override async void OnViewLoaded()
         {
-            var config = await JsonHelper.JsonDeserializeFromFileAsync<dynamic>(_appManager.SettingPath);
-            string descPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Assets\\Configs\\setting.desc.json");
-            var descConfig = await JsonHelper.JsonDeserializeFromFileAsync<dynamic>(descPath);
-            JsonConfierViewModel = _jcrService.GetVM(config, descConfig);
+            //var config = await JsonHelper.JsonDeserializeFromFileAsync<dynamic>(_appManager.SettingPath);
+            //string descPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Assets\\Configs\\setting.desc.json");
+            //var descConfig = await JsonHelper.JsonDeserializeFromFileAsync<dynamic>(descPath);
+            var config = await _appManager.LoadConfig();
+            var desc = await _appManager.LoadDescConfig();
+            JsonConfierViewModel = _jcrService.GetVM(JObject.FromObject(config), desc as JObject);
         }
 
         #region properties
@@ -54,6 +58,35 @@ namespace LiveWallpaper.Store.ViewModels
                 _JsonConfierViewModel = value;
                 NotifyOfPropertyChange(JsonConfierViewModelPropertyName);
             }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Commands
+
+        #region ApplyCommand
+
+        private DelegateCommand _ApplyCommand;
+
+        /// <summary>
+        /// Gets the ApplyCommand.
+        /// </summary>
+        public DelegateCommand ApplyCommand
+        {
+            get
+            {
+                return _ApplyCommand ?? (_ApplyCommand = new DelegateCommand(ExecuteApplyCommand));
+            }
+        }
+
+        private async void ExecuteApplyCommand()
+        {
+            var data = _jcrService.GetData(JsonConfierViewModel.Nodes);
+            await _appManager.SaveConfig(data);
+            var vm = EasyManager.IoC.Get<AppMenuViewModel>();
+            vm.SelectedMenu = vm.Menus.FirstOrDefault(m => m.TargetType == typeof(WallpapersViewModel));
         }
 
         #endregion
