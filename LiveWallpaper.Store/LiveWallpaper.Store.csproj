@@ -61,20 +61,11 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Micro.Platform, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
-    </Reference>
     <Reference Include="DZY.DotNetUtil, Version=1.0.30.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DZY.DotNetUtil.1.0.30\lib\netstandard2.0\DZY.DotNetUtil.dll</HintPath>
     </Reference>
     <Reference Include="DZY.DotNetUtil.WPF, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DZY.DotNetUtil.UI.1.0.0.54\lib\net46\DZY.DotNetUtil.WPF.dll</HintPath>
+      <HintPath>..\packages\DZY.DotNetUtil.UI.1.0.0.55\lib\net46\DZY.DotNetUtil.WPF.dll</HintPath>
     </Reference>
     <Reference Include="JsonConfiger.WPF, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JsonConfiger.1.0.0.46\lib\net46\JsonConfiger.WPF.dll</HintPath>
@@ -120,16 +111,13 @@
     <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.5.1\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
