@@ -19,7 +19,7 @@ namespace LiveWallpaper.Store.Settngs
             return new GeneralSetting()
             {
                 WallpaperSaveDir = saveDir,
-                SecretKey = "加qq群  641405255  获得密钥"
+                SecretKey = "加qq群  641405255  解锁"
             };
         }
     }

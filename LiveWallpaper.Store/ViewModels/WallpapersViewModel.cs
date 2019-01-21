@@ -515,6 +515,11 @@ namespace LiveWallpaper.Store.ViewModels
 
         public async void LoadWallpapers()
         {
+            if (_pageIndex >= 1 && !unlocked)
+            {
+                MessageBox.Show("更多壁纸请加qq群  641405255  解锁");
+                return;
+            }
             if (SelectedTag == null || SelectedSort == null)
                 return;
 
