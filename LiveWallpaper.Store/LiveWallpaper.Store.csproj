@@ -65,7 +65,7 @@
       <HintPath>..\packages\DZY.DotNetUtil.1.0.30\lib\netstandard2.0\DZY.DotNetUtil.dll</HintPath>
     </Reference>
     <Reference Include="DZY.DotNetUtil.WPF, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DZY.DotNetUtil.UI.1.0.0.55\lib\net46\DZY.DotNetUtil.WPF.dll</HintPath>
+      <HintPath>..\packages\DZY.DotNetUtil.UI.1.0.0.56\lib\net46\DZY.DotNetUtil.WPF.dll</HintPath>
     </Reference>
     <Reference Include="JsonConfiger.WPF, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JsonConfiger.1.0.0.52\lib\net46\JsonConfiger.WPF.dll</HintPath>
