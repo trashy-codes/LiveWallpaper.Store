@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -8,7 +8,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="PresentationFramework" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
