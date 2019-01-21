@@ -12,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using Windows.Foundation;
 
 namespace LiveWallpaper.Store
 {
@@ -41,7 +42,13 @@ namespace LiveWallpaper.Store
                 .Singleton<SettingViewModel>()
                 .Singleton<AppMenuViewModel>();
 
+            var inputs = GetInputs();
             AppManager appManager = new AppManager();
+            if (inputs.ContainsKey("wallpaper"))
+            {
+                string saveDir = inputs["wallpaper"];
+                SetSaveDir(appManager, saveDir);
+            }
             container.Instance(appManager);
 
             EasyManager.Initialize(container, new StoreNavigator());
@@ -49,6 +56,43 @@ namespace LiveWallpaper.Store
             EasyManager.Associate<SettingView, SettingViewModel>();
         }
 
+        internal async void SetSaveDir(AppManager app, string dir)
+        {
+            var tmp = await app.LoadConfig();
+            tmp.General.WallpaperSaveDir = dir;
+            await app.SaveConfig(tmp);
+        }
+
+        private Dictionary<string, string> GetInputs()
+        {
+            Dictionary<string, string> inputs = new Dictionary<string, string>();
+            try
+            {
+                var args = Environment.GetCommandLineArgs();
+
+                if (args.Length > 1)
+                {
+                    Uri argUri;
+                    if (Uri.TryCreate(args[1], UriKind.Absolute, out argUri))
+                    {
+                        var decoder = new WwwFormUrlDecoder(argUri.Query);
+                        if (decoder.Any())
+                        {
+                            foreach (var entry in decoder)
+                            {
+                                inputs[entry.Name] = entry.Value;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return inputs;
+        }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
