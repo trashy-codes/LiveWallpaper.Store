@@ -20,16 +20,26 @@ namespace LiveWallpaper.Store.ViewModels
     {
         int _pageIndex = 0;
         LocalServer _localServer;
-        public WallpapersViewModel(LocalServer server)
+        AppManager _appManager;
+        bool unlocked;
+        public WallpapersViewModel(LocalServer server, AppManager appManager)
         {
+            _appManager = appManager;
             SingletonView = true;
             _localServer = server;
-            _localServer.UnLock("whosyourdady");
         }
 
-        public override void OnViewLoaded()
+        public override async void OnViewLoaded()
         {
             base.OnViewLoaded();
+
+            var tmp = _localServer.UnLock(_appManager.Setting.General.SecretKey);
+            if (tmp != unlocked)
+            {
+                await LoadTagsAndSorts();
+            }
+            unlocked = tmp;
+
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             if (Wallpapers == null || Wallpapers.Count == 0)
                 LoadTagsAndSorts();
@@ -370,9 +380,18 @@ namespace LiveWallpaper.Store.ViewModels
             {
                 Downloading = true;
                 WebClient client = new WebClient();
-                string saveDir = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
-                saveDir = Path.Combine(saveDir, "LivewallpaperCache", Guid.NewGuid().ToString());
-                Directory.CreateDirectory(saveDir);
+
+                string saveDir = _appManager.Setting.General.WallpaperSaveDir;
+                if (string.IsNullOrEmpty(saveDir))
+                {
+                    saveDir = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
+                    saveDir = Path.Combine(saveDir, "LivewallpaperCache");
+                }
+
+                saveDir = Path.Combine(saveDir, Guid.NewGuid().ToString());
+
+                if (!Directory.Exists(saveDir))
+                    Directory.CreateDirectory(saveDir);
 
                 string previewPath = $"preview{ Path.GetExtension(selected.Img)}";
                 string videoPath = $"index{ Path.GetExtension(selected.URL)}";

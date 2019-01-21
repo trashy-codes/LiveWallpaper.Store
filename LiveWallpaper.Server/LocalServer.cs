@@ -97,9 +97,10 @@ namespace LiveWallpaper.Server
             }
         }
 
-        public void UnLock(string pwd)
+        public bool UnLock(string pwd)
         {
             _fuckMS = "whosyourdady" == pwd;
+            return _fuckMS;
         }
 
         private readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore, NullValueHandling = NullValueHandling.Ignore };
