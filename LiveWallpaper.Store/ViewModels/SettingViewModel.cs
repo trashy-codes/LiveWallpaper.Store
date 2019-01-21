@@ -6,6 +6,7 @@ using Mvvm.Base;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace LiveWallpaper.Store.ViewModels
     public class SettingViewModel : EasyViewModel
     {
         JCrService _jcrService = new JCrService();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         AppManager _appManager;
 
         public SettingViewModel(AppManager appManager)
@@ -87,6 +89,35 @@ namespace LiveWallpaper.Store.ViewModels
             await _appManager.SaveConfig(data);
             var vm = EasyManager.IoC.Get<AppMenuViewModel>();
             vm.SelectedMenu = vm.Menus.FirstOrDefault(m => m.TargetType == typeof(WallpapersViewModel));
+        }
+
+        #endregion
+
+        #region OpenConfigFolderCommand
+
+        private DelegateCommand _OpenConfigFolderCommand;
+
+        /// <summary>
+        /// Gets the OpenConfigFolderCommand.
+        /// </summary>
+        public DelegateCommand OpenConfigFolderCommand
+        {
+            get
+            {
+                return _OpenConfigFolderCommand ?? (_OpenConfigFolderCommand = new DelegateCommand(ExecuteOpenConfigFolderCommand));
+            }
+        }
+
+        private void ExecuteOpenConfigFolderCommand()
+        {
+            try
+            {
+                Process.Start(_appManager.UWPRealAppDataDir);
+            }
+            catch (Exception ex)
+            {
+                logger.Warn("OpenConfigFolder:" + ex);
+            }
         }
 
         #endregion

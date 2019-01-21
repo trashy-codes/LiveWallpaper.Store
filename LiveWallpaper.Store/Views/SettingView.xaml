@@ -15,13 +15,23 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <wpf:JsonConfierControl BorderBrush="#FF673AB7" DataContext="{Binding JsonConfierViewModel}" />
+        <wpf:JsonConfierControl
+            Grid.Row="0"
+            BorderBrush="#FF673AB7"
+            DataContext="{Binding JsonConfierViewModel}" />
         <Button
             Grid.Row="1"
             Margin="10"
-            Command="{Binding ApplyCommand}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            lan:Xaml.Key="setting_apply" />
+            lan:Xaml.Key="setting_apply"
+            Command="{Binding ApplyCommand}" />
+        <Button
+            Grid.Row="0"
+            Margin="0,6,5,10"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            lan:Xaml.Key="setting_saveDir"
+            Command="{Binding OpenConfigFolderCommand}" />
     </Grid>
 </UserControl>

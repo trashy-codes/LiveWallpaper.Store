@@ -20,8 +20,14 @@ namespace LiveWallpaper.Store
     /// </summary>
     public partial class App : Application
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         public App()
         {
+            //异常捕获
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+
             //多语言初始化
             string appDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             string path = Path.Combine(appDir, "Assets\\Languages");
@@ -41,6 +47,21 @@ namespace LiveWallpaper.Store
             EasyManager.Initialize(container, new StoreNavigator());
             EasyManager.Associate<WallpapersView, WallpapersViewModel>();
             EasyManager.Associate<SettingView, SettingViewModel>();
+        }
+
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var ex = e.ExceptionObject as Exception;
+            logger.Error(ex);
+            MessageBox.Show(ex.Message);
+        }
+
+        private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            var ex = e.Exception;
+            logger.Error(ex);
+            MessageBox.Show(ex.Message);
         }
     }
 }

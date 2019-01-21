@@ -18,7 +18,8 @@ namespace LiveWallpaper.Store.Settngs
             saveDir = Path.Combine(saveDir, "LivewallpaperCache");
             return new GeneralSetting()
             {
-                WallpaperSaveDir = saveDir
+                WallpaperSaveDir = saveDir,
+                SecretKey = "加qq群  641405255  获得密钥"
             };
         }
     }

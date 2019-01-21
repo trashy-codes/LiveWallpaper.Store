@@ -11,5 +11,6 @@
   "setting_general": "常规",
   "setting_wallpaperDir": "下载目录",
   "setting_secretKey": "口令",
-  "setting_apply": "应用设置"
+  "setting_apply": "应用设置",
+  "setting_saveDir": "配置目录"
 }
