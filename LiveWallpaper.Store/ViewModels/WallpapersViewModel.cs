@@ -511,7 +511,7 @@ namespace LiveWallpaper.Store.ViewModels
                 NotifyOfPropertyChange(SelectedSortPropertyName);
             }
             //await Task.Delay(5000);
-            LoadWallpapers();
+            ReLoadWallpapers();
         }
 
         public async void LoadWallpapers()
