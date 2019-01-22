@@ -38,13 +38,12 @@ namespace LiveWallpaper.Store.ViewModels
             {
                 await LoadTagsAndSorts();
             }
+            else if (Wallpapers == null || Wallpapers.Count == 0)
+            {
+                await LoadTagsAndSorts();
+            }
+
             unlocked = tmp;
-
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            if (Wallpapers == null || Wallpapers.Count == 0)
-                LoadTagsAndSorts();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-
         }
 
         #region  properties
@@ -124,7 +123,8 @@ namespace LiveWallpaper.Store.ViewModels
                 if (_SelectedTag == value) return;
 
                 _SelectedTag = value;
-                ReLoadWallpapers();
+                if (value != null)
+                    ReLoadWallpapers();
                 NotifyOfPropertyChange(SelectedTagPropertyName);
             }
         }
@@ -179,11 +179,11 @@ namespace LiveWallpaper.Store.ViewModels
                 if (_SelectedSort == value) return;
 
                 _SelectedSort = value;
-                ReLoadWallpapers();
+                if (value != null)
+                    ReLoadWallpapers();
                 NotifyOfPropertyChange(SelectedSortPropertyName);
             }
         }
-
 
         #endregion
 
@@ -510,6 +510,7 @@ namespace LiveWallpaper.Store.ViewModels
                 _SelectedSort = Sorts[0];
                 NotifyOfPropertyChange(SelectedSortPropertyName);
             }
+            //await Task.Delay(5000);
             LoadWallpapers();
         }
 

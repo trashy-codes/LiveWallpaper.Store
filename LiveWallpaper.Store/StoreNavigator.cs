@@ -10,8 +10,13 @@ namespace LiveWallpaper.Store
 {
     public class StoreNavigator : Navigator
     {
+        object currentVM;
         public override void Show(object vm)
         {
+            if (currentVM == vm)
+                return;
+
+            currentVM = vm;
             var view = EasyManager.GetView(vm);
             var control = view as UserControl;
             if (control == null)
