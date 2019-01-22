@@ -5,6 +5,7 @@
     xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:MpvPlayer="clr-namespace:MpvPlayer;assembly=MpvPlayer"
     xmlns:controls="clr-namespace:LiveWallpaper.Store.Controls"
+    xmlns:converters="clr-namespace:LiveWallpaper.Store.Views.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:lan="clr-namespace:MultiLanguageManager;assembly=MultiLanguageManager.WPF"
     xmlns:local="clr-namespace:LiveWallpaper.Store.Views"
@@ -15,6 +16,11 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:UriToCachedImageConverter
+            x:Key="UriToCachedImageConverter"
+            DecodePixelHeight="61"
+            DecodePixelWidth="109" />
+
     </UserControl.Resources>
     <Grid x:Name="ContentArea">
         <Grid.RowDefinitions>
