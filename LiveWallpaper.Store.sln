@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyMvvm", "EasyMvvm\EasyMvvm.csproj", "{DAFA1C0B-E525-4534-8157-D4360ADD938C}"
 EndProject
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "App", "App\App.wapproj", "{B8B67AB6-CAEF-4618-B662-54E1894F4E5B}"
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "LiveWallpaper.Store.App", "App\LiveWallpaper.Store.App.wapproj", "{B8B67AB6-CAEF-4618-B662-54E1894F4E5B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyMvvm.Test", "EasyMvvm.Test\EasyMvvm.Test.csproj", "{CFE78D7B-A5AC-4C96-A102-6AEEB73D02FC}"
 EndProject
