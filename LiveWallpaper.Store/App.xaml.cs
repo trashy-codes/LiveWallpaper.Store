@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -43,6 +44,16 @@ namespace LiveWallpaper.Store
                 .Singleton<AppMenuViewModel>();
 
             var inputs = GetInputs();
+            if (inputs == null || inputs.Count() == 0)
+            {
+                var result = MessageBox.Show("请从《巨应动态壁纸》启动本程序，是否打开下载链接？", "警告", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    Process.Start("https://www.mscoder.cn/product/livewallpaper/");
+                }
+                Shutdown(0);
+                return;
+            }
             AppManager appManager = new AppManager();
             if (inputs.ContainsKey("wallpaper"))
             {

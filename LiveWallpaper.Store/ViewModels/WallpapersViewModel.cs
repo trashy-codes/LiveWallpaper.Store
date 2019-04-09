@@ -1,5 +1,6 @@
 ﻿using EasyMvvm;
 using LiveWallpaper.Server;
+using LiveWallpaper.Store.Settngs;
 using Mvvm.Base;
 using Newtonsoft.Json;
 using System;
@@ -518,7 +519,7 @@ namespace LiveWallpaper.Store.ViewModels
         {
             if (_pageIndex >= 1 && !unlocked)
             {
-                MessageBox.Show("更多壁纸请加qq群  641405255  解锁");
+                MessageBox.Show(GeneralSetting.TipMessage);
                 return;
             }
             if (SelectedTag == null || SelectedSort == null)

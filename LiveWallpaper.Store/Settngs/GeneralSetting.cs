@@ -9,6 +9,7 @@ namespace LiveWallpaper.Store.Settngs
 {
     public class GeneralSetting
     {
+        public const string TipMessage = "官网有口令自己找，或者加qq群  641405255  找志愿者协助解锁。";
         public string WallpaperSaveDir { get; set; }
         public string SecretKey { get; set; }
 
@@ -19,7 +20,7 @@ namespace LiveWallpaper.Store.Settngs
             return new GeneralSetting()
             {
                 WallpaperSaveDir = saveDir,
-                SecretKey = "加qq群  641405255  解锁"
+                SecretKey = TipMessage
             };
         }
     }
