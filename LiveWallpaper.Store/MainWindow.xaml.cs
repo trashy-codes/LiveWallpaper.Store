@@ -41,6 +41,17 @@ namespace LiveWallpaper.Store
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            if (App.Inputs == null || App.Inputs.Count() == 0)
+            {
+                var result = MessageBox.Show("为防止下载目录设置不一致，请从《巨应动态壁纸》启动本程序。是否打开下载链接？", "警告", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    Process.Start("https://www.mscoder.cn/product/livewallpaper/");
+                }
+                //Shutdown(0);
+                //return;
+            }
+
             Loaded -= MainWindow_Loaded;
             Content.Content = lastContent;
         }

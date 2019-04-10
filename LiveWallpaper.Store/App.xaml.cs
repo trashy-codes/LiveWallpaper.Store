@@ -23,6 +23,7 @@ namespace LiveWallpaper.Store
     public partial class App : Application
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        internal static Dictionary<string, string> Inputs { private set; get; }
 
         public App()
         {
@@ -43,21 +44,12 @@ namespace LiveWallpaper.Store
                 .Singleton<SettingViewModel>()
                 .Singleton<AppMenuViewModel>();
 
-            var inputs = GetInputs();
-            if (inputs == null || inputs.Count() == 0)
-            {
-                var result = MessageBox.Show("请从《巨应动态壁纸》启动本程序，是否打开下载链接？", "警告", MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
-                {
-                    Process.Start("https://www.mscoder.cn/product/livewallpaper/");
-                }
-                Shutdown(0);
-                return;
-            }
+            Inputs = GetInputs();
+         
             AppManager appManager = new AppManager();
-            if (inputs.ContainsKey("wallpaper"))
+            if (Inputs.ContainsKey("wallpaper"))
             {
-                string saveDir = inputs["wallpaper"];
+                string saveDir = Inputs["wallpaper"];
                 SetSaveDir(appManager, saveDir);
             }
             container.Instance(appManager);
