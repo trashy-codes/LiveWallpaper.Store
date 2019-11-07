@@ -7,7 +7,7 @@
     xmlns:controls="clr-namespace:LiveWallpaper.Store.Controls"
     xmlns:converters="clr-namespace:LiveWallpaper.Store.Views.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:lan="clr-namespace:MultiLanguageManager;assembly=MultiLanguageManager.WPF"
+    xmlns:lan="clr-namespace:MultiLanguageForXAML;assembly=MultiLanguageForXAML"
     xmlns:local="clr-namespace:LiveWallpaper.Store.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"

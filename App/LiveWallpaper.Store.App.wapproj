@@ -74,7 +74,9 @@
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LiveWallpaper.Store\LiveWallpaper.Store.csproj" />
+    <ProjectReference Include="..\LiveWallpaper.Store\LiveWallpaper.Store.csproj">
+      <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AppList\AppList.scale-100.png" />

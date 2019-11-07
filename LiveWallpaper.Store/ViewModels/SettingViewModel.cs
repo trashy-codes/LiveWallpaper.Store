@@ -1,16 +1,11 @@
-﻿using DZY.DotNetUtil.Helpers;
-using EasyMvvm;
+﻿using EasyMvvm;
 using JsonConfiger;
 using JsonConfiger.Models;
 using Mvvm.Base;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LiveWallpaper.Store.ViewModels
 {

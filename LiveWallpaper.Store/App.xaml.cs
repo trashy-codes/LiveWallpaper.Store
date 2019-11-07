@@ -2,16 +2,12 @@
 using LiveWallpaper.Server;
 using LiveWallpaper.Store.ViewModels;
 using LiveWallpaper.Store.Views;
-using MultiLanguageManager;
+using MultiLanguageForXAML;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using Windows.Foundation;
 

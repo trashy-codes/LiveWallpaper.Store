@@ -5,7 +5,7 @@
     xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:easyXAml="clr-namespace:EasyMvvm.Xaml;assembly=EasyMvvm"
-    xmlns:lan="clr-namespace:MultiLanguageManager;assembly=MultiLanguageManager.WPF"
+    xmlns:lan="clr-namespace:MultiLanguageForXAML;assembly=MultiLanguageForXAML"
     xmlns:local="clr-namespace:LiveWallpaper.Store"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"

@@ -1,9 +1,9 @@
-﻿using Mvvm.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using GiantappMvvm.Base;
 
 namespace LiveWallpaper.Server
 {

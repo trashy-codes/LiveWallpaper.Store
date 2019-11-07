@@ -40,7 +40,7 @@ namespace EasyMvvm
             return this;
         }
 
-        public T Get<T>(string key = null) where T : object
+        public T Get<T>(string key = null)
         {
             T result = default(T);
             if (string.IsNullOrEmpty(key))
